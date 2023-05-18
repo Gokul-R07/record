@@ -1,0 +1,31 @@
+1 a
+import numpy as np 
+import pandas as pd
+
+dataArray=np.array([["Dhoni",10,6,5,10],["kohli",15,3,8,5],["Rohit",15,3,8,5],["Suresh",8,1,8,5],["Sandy",0,3,8,5],["gokul",15,3,8,5],["Rahul",1,1,8,5],["Sam",1,3,8,5],["Ram",4,3,8,5],["Pravin",3,3,8,5]]) 
+df=pd.DataFrame(dataArray,columns=['Name','6s','4s','2s','1s'])
+df['Total_Score']=6*(df['6s'].astype(int))+4*(df['4s'].astype(int))+2*(df['2s'].astype(int))+1*(df['1s'].astype(int))
+print(df)
+
+df.to_csv('cricket.csv')
+
+
+1 b
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df= pd.DataFrame({"Match_Number" : range(1,11),
+                     "No_of_sixes"  : np.random.randint(5, 20, size=10),
+                     "No_of_fours"  : np.random.randint(5, 30, size=10)
+                     })
+print(df)
+df.to_csv('sport.csv')
+plt.plot(df['Match_Number'],df[ "No_of_sixes"]) 
+plt.bar(df['Match_Number'],df[ "No_of_fours"], color ='maroon',width = 0.4)
+plt.scatter(df['Match_Number'],df[ "No_of_sixes"]) 
+plt.xlabel('Match_Number')
+plt.ylabel('No_of_sixes')
+plt.pie(df["No_of_fours"],labels=df['Match_Number'])
+plt.legend(title = "No of sixes in each match")
